@@ -7,11 +7,23 @@
     <title>Pearson Departures</title>
   </head>
   <body>
-    <label for="">Alirline: </label><label for=""><%=flights.airline%> </label>
-    <label for="">Airport: </label><label for=""><%=flights.airport%> </label>
-    <label for="">Flight Nunmber: </label>
-    <label for=""><%=flights.flightNo%> </label>
-    <label for="">Departing time: </label>
-    <label for=""><%=flights.departs%> </label>
+    <table>
+      <tr>
+        <th>Alirline</th>
+        <th>Airport</th>
+        <th>Flight Nunmber</th>
+        <th>Departing time</th>
+      </tr>
+
+      <%flights.forEach (function(f) {%>
+      <tr>
+        <td><%=f.airline%></td>
+        <td><%=f.airport%></td>
+        <td><%=f.flightNo%></td>
+        <td><%=f.departs%></td>
+      </tr>
+
+      <%})%>
+    </table>
   </body>
 </html>

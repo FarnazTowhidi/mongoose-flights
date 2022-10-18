@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-const movieSchema = new Schema({
+const flightSchema = new Schema({
   airline: {
     type: String,
     enum: ["American", "Southwest", "United"],
@@ -12,13 +12,12 @@ const movieSchema = new Schema({
   },
   flightNo: {
     type: Number,
-    required: true,
+    // required: true,
   },
 
   departs: {
     type: Date,
     required: true,
   },
-  Date,
 });
-module.exports = mongoose.model("Movie", movieSchema);
+module.exports = mongoose.model("Flight", flightSchema);

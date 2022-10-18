@@ -7,13 +7,27 @@
     <title>Add Flight</title>
   </head>
   <body>
-    <form action="/flights/" metohd="post">
-      <label for="">Alirline</label><input type="text" value="airline" />
-      <label for="">Airport</label><input type="text" value="airport" />
+    <form action="/flights" method="post">
+      <label for="">Alirline</label
+      ><input type="text" name="airline" value="American" /><br />
+      <label for="">Airport</label>
+      <select name="airport">
+        <option value="AUS" selected>AUS</option>
+        <option value="DEN">DFW</option>
+        <option value="DEN">DEN</option>
+        <option value="DEN">LAX</option>
+      </select>
+
+      <br />
       <label for="">Flight Nunmber</label
-      ><input type="text" value="flightNo" />
+      ><input type="text" name="flightNo" value="12" /><br />
       <label for="">Departing time</label
-      ><input type="datetime-local" /> value="departs" />
+      ><input
+        type="datetime-local"
+        name="departs"
+        value="2018-06-12T19:30"
+      /><br />
+
       <input type="submit" value="ADD Flight" />
     </form>
   </body>
