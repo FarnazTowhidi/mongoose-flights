@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Show Flight Details</title>
+  </head>
+  <body>
+    <div>
+      <label class="flightDetail_lable">AirLine: </label
+      ><label for=""><%=flight.airline%></label><br />
+      <label class="flightDetail_lable">Airport: </label>
+      <label>Flight number: </label><label for=""><%=flight.flightNo%></label>
+      <label for=""><%=flight.airport%></label><br />
+      <label>Departured: </label><label for=""><%=flight.departs%></label><br />
+    </div>
+
+    <h2>Destinations</h2>
+    <div>
+      <%flight.destinations.forEach (function (f) {%>
+      <label for=""><%=f.airport%></label>
+      <label for=""><%=f.arrival%></label> <%})%><br />
+
+      <h2>Add Destination</h2>
+      <form action="/flights/<%=flight.id%>/addDestination" method="post">
+        <label for="airport">airport</label
+        ><input name="airport" type="text" />
+        <label for="arrival">arrival</label
+        ><input type="datetime-local" name="arrival" />
+        <input type="submit" />
+      </form>
+    </div>
+
+    <h2>Tickets</h2>
+    <a href="/tickets/new/<%=flight.id%>">ADD Ticket</a>
+  </body>
+</html>
