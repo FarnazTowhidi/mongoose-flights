@@ -7,6 +7,16 @@
     <title>Add Ticket</title>
   </head>
   <body>
-    <h1>Add Ticket</h1>
+    <h1>Add Ticket to flight <%=flights.flightNo%></h1>
+    <div>
+      <form action="/tickets/create/<%=flights.flightNo%>" method="post">
+        <label for="">Seat: </label>
+        <input type="text" name="seat" required pattern="[A-F][1-9]\d?" />
+
+        <label for="">Price: </label>
+        <input type="text" name="price" />
+        <input type="submit" value="ADD TICKET" />
+      </form>
+    </div>
   </body>
 </html>

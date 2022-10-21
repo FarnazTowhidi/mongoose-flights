@@ -2,7 +2,14 @@ const Flight = require("../models/flight.js");
 const Ticket = require("../models/ticket");
 
 function newTicket(req, res) {
-  res.render(`new/${req.params.id}`);
+  Flight.findById(req.params.id, function (err, flights) {
+    if (err) return res.send(err.message);
+    res.render("tickets/new.ejs", { flights });
+  });
 }
 
-module.exports = { new: newTicket };
+function create(req, res) {
+  Ticket.
+}
+
+module.exports = { new: newTicket, create };
