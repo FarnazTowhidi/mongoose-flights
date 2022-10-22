@@ -27,7 +27,7 @@ function create(req, res) {
 function show(req, res) {
   Flight.findById(req.params.id, function (err, flight) {
     if (err) return res.send(err.message);
-    res.render("flights/show.ejs", { flight });
+    res.render("flights/show.ejs", { flight }, { ticket });
   });
 }
 
@@ -36,7 +36,7 @@ function newDestination(req, res) {
     if (err) return res.send(err.message);
     flights.destinations.push(req.body);
     flights.save();
-    res.redirect(`flights/${req.params.id}`);
+    res.redirect(`/flights/${req.params.id}`);
   });
 }
 
