@@ -1,10 +1,11 @@
 const Flight = require("../models/flight.js");
+const Ticket = require("../models/ticket");
 
 function index(req, res) {
   Flight.find({}, function (err, flights) {
     if (err) return res.send(err.message);
     res.render("flights/index.ejs", { flights });
-  });
+  }).sort("departs");
 }
 
 function newFlight(req, res) {
@@ -15,8 +16,6 @@ function newFlight(req, res) {
 }
 
 function create(req, res) {
-  console.log(req.body);
-
   const flight = new Flight(req.body);
   flight.save(function (err) {
     if (err) return res.send(err.message);
@@ -27,7 +26,10 @@ function create(req, res) {
 function show(req, res) {
   Flight.findById(req.params.id, function (err, flight) {
     if (err) return res.send(err.message);
-    res.render("flights/show.ejs", { flight }, { ticket });
+    Ticket.find({ flight: flight.id }, function (err, tickets) {
+      if (err) return res.send(err.message);
+      res.render("flights/show.ejs", { flight, tickets });
+    }).sort("-arrival"); //Why it does not sort
   });
 }
 
@@ -40,4 +42,29 @@ function newDestination(req, res) {
   });
 }
 
-module.exports = { index, new: newFlight, create, show, newDestination };
+function deleteFlight(req, res) {
+  const flightID = req.params.id.toString().trim();
+  Flight.findByIdAndDelete({ _id: flightID }, function (err, flight) {
+    res.redirect("/flights/");
+  });
+}
+
+function deleteDestination(req, res) {
+  const destinationIdID = req.params.id.toString().trim();
+  Flight.destinations.findOneAndDelete(
+    { _id: destinationIdID },
+    function (err, flight) {
+      res.redirect("/flights/");
+    }
+  );
+}
+
+module.exports = {
+  index,
+  new: newFlight,
+  create,
+  show,
+  newDestination,
+  deleteDestination,
+  deleteFlight,
+};

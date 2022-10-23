@@ -1,5 +1,6 @@
 <%- include('../partials/header') %>
 <h2>Departing Flight</h2>
+<%if (flights.length > 0) {%>
 <table>
   <tr class="flightListHeader">
     <th>Alirline</th>
@@ -7,6 +8,7 @@
     <th>Flight Nunmber</th>
     <th>Departing time</th>
     <th>Detail</th>
+    <th>Action</th>
   </tr>
 
   <%flights.forEach (function(f) {%>
@@ -18,8 +20,20 @@
     <td class="red">
       <a href="/flights/<%=f._id%>" id="detailLink">Flight Details</a>
     </td>
+    <td>
+      <form
+        action="/flights/deleteFlight/<%=f._id%>?_method=DELETE"
+        method="POST"
+      >
+        <button type="submit" class="addTicket" style="width: 80px">
+          Delete
+        </button>
+      </form>
+    </td>
   </tr>
-
   <%})%>
 </table>
-<%- include('../partials/footer') %>
+<%} else {%>
+<div>No flight yet </div>
+<% } %> 
+<%- include('../partials/footer') %> </No>

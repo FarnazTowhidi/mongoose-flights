@@ -11,4 +11,7 @@ router.get("/", flightsCtrl.index);
 
 router.post("/:id/addDestination", flightsCtrl.newDestination);
 
+router.delete("/deleteDestination/:id", flightsCtrl.deleteDestination);
+router.delete("/deleteFlight/:id", flightsCtrl.deleteFlight);
+
 module.exports = router;
